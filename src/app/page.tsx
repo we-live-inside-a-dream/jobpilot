@@ -26,8 +26,6 @@ export default function Home() {
           <p className="max-w-2xl text-xl text-gray-700 dark:text-gray-400 md:text-2xl">
             {siteConfig.description}
           </p>
-
-          <div className="h-32 md:h-40"></div>
           <div className="h-12"></div>
         </div>
       </main>
