@@ -17,7 +17,7 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col gap-6 md:gap-8 lg:gap-10">
-            <p className="max-w-5xl font-sans text-4xl font-bold text-gray-900 md:text-6xl lg:pr-24 lg:text-7xl dark:text-gray-200">
+            <p className="max-w-5xl text-4xl font-bold text-gray-900 md:text-6xl lg:pr-24 lg:text-7xl dark:text-gray-200">
               {siteConfig.title}
             </p>
             <p className="max-w-2xl text-xl text-gray-700 md:text-2xl dark:text-gray-400">

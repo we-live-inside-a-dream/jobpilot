@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { siteConfig } from "@/lib/site";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -13,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "JobPilot",
-  description: "Find, match, and track your next job with AI.",
+  title: siteConfig.title,
+  description: siteConfig.title,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
