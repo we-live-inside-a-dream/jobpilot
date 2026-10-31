@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+#extensions
+.groupcode/
+
+#learning file
+LEARNING.md
