@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "JobPilot",
-  description: "This is JobPilot, your smooth way to your next title!",
+  description: "Find, match, and track your next job with AI.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
