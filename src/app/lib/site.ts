@@ -1,4 +1,4 @@
 export const siteConfig = {
-    name: "JobPilot",
-    description: "This is JobPilot, your smooth way to your next title!"
+    title: "JobPilot",
+    description: "Find, match, and track your next job with AI."
 }
