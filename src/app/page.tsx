@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { metadata } from "./layout";
+import  {siteConfig}  from "./lib/site";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -8,22 +9,22 @@ export default function Home() {
         <div className="container mx-auto overflow-hidden p-8 text-gray-300 md:rounded-lg md:p-10 lg:p-12">
           <div className="flex justify-between">
             <h1 className="text-3xl font-medium">Landing</h1>
-            <link
+            <Link
               href="/"
               className="focus:shadow-outline self-start rounded-lg border border-gray-800 bg-gradient-to-b from-gray-900 to-black px-3 py-2 leading-none text-gray-200 hover:from-indigo-500 focus:outline-none"
             >
               Get Started
-            </link>
+            </Link>
           </div>
 
           <div className="h-32 md:h-40"></div>
 
           <p className="max-w-5xl font-sans text-4xl font-bold text-gray-200 md:text-6xl lg:pr-24 lg:text-7xl">
-            {metadata.title}
+            {siteConfig.name}
           </p>
           <div className="h-10"></div>
           <p className="max-w-2xl text-xl text-gray-400 md:text-2xl">
-            {metadata.description}
+            {siteConfig.description}
           </p>
 
           <div className="h-32 md:h-40"></div>
