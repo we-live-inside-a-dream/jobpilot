@@ -18,7 +18,7 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt // auto-set on every update
 
-  resume       Resume[]
+  resumes      Resume[]
   applications Application[]
 }
 
@@ -27,9 +27,10 @@ model Resume {
   title      String
   content    String
   archivedAt DateTime?
+  createdAt  DateTime  @default(now())
 
   userId       String
-  owner        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  users        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   applications Application[]
 }
 
@@ -44,13 +45,13 @@ model Company {
 model Job {
   id          String  @id @default(cuid())
   title       String
-  url         String
+  url         String @unique
   description String
   location    String?
 
-  companyId   String
-  company     Company       @relation(fields: [companyId], references: [id])
-  application Application[]
+  companyId    String
+  companies    Company       @relation(fields: [companyId], references: [id])
+  applications Application[]
 }
 
 model Application {
@@ -61,14 +62,17 @@ model Application {
   appliedAt  DateTime?
   createdAt  DateTime          @default(now())
   updatedAt  DateTime          @updatedAt
+
   userId     String
-  user       User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  users      User              @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   jobId String
-  job   Job    @relation(fields: [jobId], references: [id])
+  jobs  Job    @relation(fields: [jobId], references: [id])
 
   resumeId String?
-  resume   Resume? @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+  resumes  Resume? @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, jobId])
 }
 
 enum ApplicationStatus {
