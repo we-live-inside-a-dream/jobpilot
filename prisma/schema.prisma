@@ -13,8 +13,7 @@ datasource db {
 model User {
   id        String   @id @default(cuid()) // primary key, auto-generated
   email     String   @unique
-  firstName String
-  lastName  String
+  name      String
   bio       String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt // auto-set on every update
@@ -35,19 +34,19 @@ model Resume {
 }
 
 model Company {
-  id      String @id @default(cuid())
+  id      String  @id @default(cuid())
   name    String
-  website String
+  website String?
 
   jobs Job[]
 }
 
 model Job {
-  id          String @id @default(cuid())
+  id          String  @id @default(cuid())
   title       String
   url         String
   description String
-  location    String
+  location    String?
 
   companyId   String
   company     Company       @relation(fields: [companyId], references: [id])
@@ -55,23 +54,24 @@ model Job {
 }
 
 model Application {
-  id         String    @id @default(cuid())
-  status     Status
-  matchScore Int
+  id         String            @id @default(cuid())
+  status     ApplicationStatus @default(DISCOVERED)
+  matchScore Int?
   notes      String?
   appliedAt  DateTime?
-
-  userId String
-  user   User   @relation(fields: [userId], references: [id])
+  createdAt  DateTime          @default(now())
+  updatedAt  DateTime          @updatedAt
+  userId     String
+  user       User              @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   jobId String
   job   Job    @relation(fields: [jobId], references: [id])
 
-  resumeId String
-  resume   Resume @relation(fields: [resumeId], references: [id])
+  resumeId String?
+  resume   Resume? @relation(fields: [resumeId], references: [id], onDelete: Cascade)
 }
 
-enum Status {
+enum ApplicationStatus {
   DISCOVERED
   APPLIED
   INTERVIEWING
