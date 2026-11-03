@@ -5,7 +5,7 @@ CREATE TYPE "ApplicationStatus" AS ENUM ('DISCOVERED', 'APPLIED', 'INTERVIEWING'
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
+    "name" TEXT,
     "bio" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,

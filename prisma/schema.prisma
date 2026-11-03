@@ -13,7 +13,7 @@ datasource db {
 model User {
   id        String   @id @default(cuid()) // primary key, auto-generated
   email     String   @unique
-  name      String
+  name      String?
   bio       String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt // auto-set on every update
@@ -30,7 +30,7 @@ model Resume {
   createdAt  DateTime  @default(now())
 
   userId       String
-  users        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   applications Application[]
 }
 
@@ -50,7 +50,7 @@ model Job {
   location    String?
 
   companyId    String
-  companies    Company       @relation(fields: [companyId], references: [id])
+  company      Company       @relation(fields: [companyId], references: [id])
   applications Application[]
 }
 
@@ -67,10 +67,10 @@ model Application {
   users  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   jobId String
-  jobs  Job    @relation(fields: [jobId], references: [id])
+  job   Job    @relation(fields: [jobId], references: [id])
 
   resumeId String?
-  resumes  Resume? @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+  resume   Resume? @relation(fields: [resumeId], references: [id], onDelete: Cascade)
 
   @@unique([userId, jobId])
 }
