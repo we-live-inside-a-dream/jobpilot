@@ -1,0 +1,13 @@
+// Prisma schema: the single source of truth for JobPilot's database.
+// Docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// TODO(Reza): add the User, Resume, Company, Job and Application models here.
