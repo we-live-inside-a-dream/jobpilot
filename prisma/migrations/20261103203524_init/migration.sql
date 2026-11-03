@@ -19,6 +19,7 @@ CREATE TABLE "Resume" (
     "title" TEXT NOT NULL,
     "content" TEXT NOT NULL,
     "archivedAt" TIMESTAMP(3),
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "userId" TEXT NOT NULL,
 
     CONSTRAINT "Resume_pkey" PRIMARY KEY ("id")
@@ -63,6 +64,12 @@ CREATE TABLE "Application" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Job_url_key" ON "Job"("url");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Application_userId_jobId_key" ON "Application"("userId", "jobId");
 
 -- AddForeignKey
 ALTER TABLE "Resume" ADD CONSTRAINT "Resume_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

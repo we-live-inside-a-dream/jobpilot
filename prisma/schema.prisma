@@ -45,7 +45,7 @@ model Company {
 model Job {
   id          String  @id @default(cuid())
   title       String
-  url         String @unique
+  url         String  @unique
   description String
   location    String?
 
@@ -63,8 +63,8 @@ model Application {
   createdAt  DateTime          @default(now())
   updatedAt  DateTime          @updatedAt
 
-  userId     String
-  users      User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  users  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   jobId String
   jobs  Job    @relation(fields: [jobId], references: [id])
