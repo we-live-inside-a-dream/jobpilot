@@ -9,8 +9,9 @@ export default defineConfig({
     path: "prisma/migrations",
   },
   datasource: {
-    // process.env (not env()) so `prisma generate` still works without a
-    // database URL, e.g. during `npm install` in CI.
-    url: process.env["DATABASE_URL"],
+    // Migrations use the direct (unpooled) connection: Neon's pooler doesn't
+    // support everything `prisma migrate` needs. process.env (not env()) so
+    // `prisma generate` still works without a URL, e.g. during CI installs.
+    url: process.env["DATABASE_URL_UNPOOLED"] ?? process.env["DATABASE_URL"],
   },
 });
