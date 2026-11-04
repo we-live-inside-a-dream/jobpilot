@@ -57,12 +57,8 @@ async function main() {
                 job: {
                     connect: { id: company.jobs[0].id}
                 },
-
-
             }
-
         })
-        
     })
 
     console.log("🌱 seed complete")
