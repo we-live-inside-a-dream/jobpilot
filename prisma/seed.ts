@@ -14,7 +14,7 @@ async function main() {
       // 2. Create the demo user with resumes
       const user = await tx.user.create({
         data: {
-          email: "demo@jobpilot.com",
+          email: "demo@example.com",
           name: "Demo User",
           bio: "..........",
           resumes: {
@@ -29,7 +29,6 @@ async function main() {
         },
       });
       // 3. Create companies with jobs
-      const companies = [];
       const jobIds: string[] = [];
 
       for (let i = 0; i < 5; i++) {
@@ -56,7 +55,6 @@ async function main() {
           include: { jobs: true },
         });
         jobIds.push(...company.jobs.map((job) => job.id));
-        companies.push(company);
       }
 
       // 4. Create applications in different statuses
@@ -73,15 +71,15 @@ async function main() {
           data: {
             status,
             matchScore: isDiscovered
-              ? undefined
+              ? null
               : faker.number.int({ min: 0, max: 100 }),
-            notes: "hello",
+            notes: `Demo application ${i + 1}`,
             user: { connect: { id: user.id } },
             job: { connect: { id: jobIds[i] } },
-            resume: isDiscovered
-              ? undefined
-              : { connect: { id: user.resumes[0].id } },
-            appliedAt: isDiscovered ? undefined : faker.date.recent(),
+            ...(isDiscovered
+              ? null
+              : { resume: { connect: { id: user.resumes[0].id } } }),
+            appliedAt: isDiscovered ? null : faker.date.recent(),
           },
         });
       }
