@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# JobPilot
 
-## Getting Started
+An AI-powered job application tracker. JobPilot finds job listings, scores how well each one matches your resume, helps you prepare applications, and tracks every application through your pipeline.
 
-First, run the development server:
+> **Status:** work in progress. Sections below are marked ✅ built or 🚧 planned.
+
+## Features
+
+- ✅ **Database and data model:** users, resumes, companies, jobs and applications (PostgreSQL on Neon, Prisma)
+- ✅ **Authentication backend:** GitHub sign-in with Better Auth
+- 🚧 **Sign-in UI and dashboard**
+- 🚧 **Application tracker:** Kanban pipeline (Discovered → Applied → Interviewing → Offer / Rejected)
+- 🚧 **Job discovery:** scheduled fetching from sources that allow it (Greenhouse and Lever job boards, Adzuna, and others)
+- 🚧 **AI match scoring:** a 0–100 score with reasons, comparing a job description to your resume (Claude API)
+- 🚧 **Assisted apply:** tailored cover letters and answer drafts. You review and submit every application yourself. JobPilot never auto-submits.
+
+## Tech stack
+
+Next.js 16 (App Router) · TypeScript · Tailwind CSS · PostgreSQL (Neon) · Prisma 7 · Better Auth · Claude API
+
+## Getting started
+
+Requires Node 22 (see `.nvmrc`).
 
 ```bash
+git clone https://github.com/we-live-inside-a-dream/jobpilot.git
+cd jobpilot
+npm install
+cp .env.example .env   # then fill in the values
+npm run db:migrate
+npx prisma db seed
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+See `.env.example`. You need a Neon database (`DATABASE_URL`, `DATABASE_URL_UNPOOLED`), a `BETTER_AUTH_SECRET`, and a GitHub OAuth app (`GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`) with the callback URL `http://localhost:3000/api/auth/callback/github`. Never commit `.env`.
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
+| Command | What it does |
+|---|---|
+| `npm run dev` | Start the dev server |
+| `npm run build` | Production build |
+| `npm run lint` / `npm run format:check` | Lint and formatting checks |
+| `npm run db:migrate` | Apply migrations and regenerate the Prisma client |
+| `npm run db:studio` | Browse the database |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Data model
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`User` has many `Resume`s and many `Application`s. A `Company` has many `Job`s. An `Application` links one user to one job, and optionally to the resume used. A user can have only one application per job.
