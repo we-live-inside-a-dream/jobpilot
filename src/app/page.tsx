@@ -1,5 +1,4 @@
 import { siteConfig } from "@/lib/site";
-import Link from "next/link";
 import { SignInButton } from "@/components/sign-in-button";
 
 export default function Home() {
