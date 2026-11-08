@@ -1,5 +1,6 @@
 import { siteConfig } from "@/lib/site";
 import Link from "next/link";
+import { SignInButton } from "@/components/sign-in-button";
 
 export default function Home() {
   return (
@@ -12,7 +13,7 @@ export default function Home() {
               href="/"
               className="self-start rounded-lg border border-gray-800 bg-linear-to-b from-gray-900 to-black px-3 py-2 leading-none text-gray-200 hover:from-indigo-500 focus:outline-none focus-visible:ring-2"
             >
-              Get Started
+              <SignInButton />
             </Link>
           </div>
 
