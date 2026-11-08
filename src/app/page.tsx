@@ -9,12 +9,7 @@ export default function Home() {
         <div className="container mx-auto overflow-hidden p-8 md:rounded-lg md:p-10 lg:p-12">
           <div className="flex justify-between gap-6 md:gap-8 lg:gap-10">
             <h1 className="mb-20 text-3xl font-medium">{siteConfig.title}</h1>
-            <Link
-              href="/"
-              className="self-start rounded-lg border border-gray-800 bg-linear-to-b from-gray-900 to-black px-3 py-2 leading-none text-gray-200 hover:from-indigo-500 focus:outline-none focus-visible:ring-2"
-            >
-              <SignInButton />
-            </Link>
+            <SignInButton />
           </div>
 
           <div className="flex flex-col gap-6 md:gap-8 lg:gap-10">
