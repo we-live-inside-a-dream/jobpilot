@@ -17,8 +17,8 @@ export default function DashboardPage() {
             <div className="max-w-2xl text-xl text-gray-700 md:text-2xl dark:text-gray-400">
               <Suspense fallback={<p>Loading…</p>}>
                 <Welcome />
-                {siteConfig.description}
               </Suspense>
+              {siteConfig.description}
             </div>
           </div>
         </div>
