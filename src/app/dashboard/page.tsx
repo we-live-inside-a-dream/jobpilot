@@ -3,7 +3,7 @@ import { SignOutButton } from "@/components/sign-out-button";
 import { requireUser } from "@/lib/session";
 import { Suspense } from "react";
 
-export default async function DashboardPage() {
+export default function DashboardPage() {
   return (
     <div className="flex flex-1 flex-col items-center justify-center bg-zinc-50 dark:bg-black">
       <main className="flex w-full flex-1 flex-col items-center justify-between bg-white px-16 py-32 sm:items-start dark:bg-black">
@@ -14,12 +14,12 @@ export default async function DashboardPage() {
           </div>
 
           <div className="flex flex-col gap-6 md:gap-8 lg:gap-10">
-            <Suspense fallback={<p>Loading…</p>}>
-              <Welcome />
-              <p className="max-w-2xl text-xl text-gray-700 md:text-2xl dark:text-gray-400">
+            <div className="max-w-2xl text-xl text-gray-700 md:text-2xl dark:text-gray-400">
+              <Suspense fallback={<p>Loading…</p>}>
+                <Welcome />
                 {siteConfig.description}
-              </p>
-            </Suspense>
+              </Suspense>
+            </div>
           </div>
         </div>
       </main>
